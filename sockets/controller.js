@@ -1,3 +1,7 @@
+const TicketControl = require("../models/ticket-control")
+
+const ticketControl  = new TicketControl;
+
 const socketController =(client)=>{
   console.log('cliente conectado', client.id)
   client.on('disconnect',()=>{
