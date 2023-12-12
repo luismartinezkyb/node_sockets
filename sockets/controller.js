@@ -18,7 +18,7 @@ const socketController =(client)=>{
 
   client.on('siguiente-ticket', (message, callback)=>{
     const siguiente = ticketControl.siguiente()
-
+    //EMITE A TODOS CUANDO SE CREA UNO NUEVO PARA VER LOS PENDIENTES
     client.broadcast.emit('count-tickets', ticketControl.tickets)
 
     callback(siguiente);
@@ -42,7 +42,10 @@ const socketController =(client)=>{
     client.broadcast.emit('estado-actual', ticketControl.ultimos4);
     
     //TODO: Notificar tickets pendientes;
+    //SOLO LE AVISA AL QUE ESTÁ REALIZANDOLO
     client.emit('count-tickets', ticketControl.tickets)
+    // Y TAMBIEN TIENE QUE EMITIRLO A LOS DEMAS ESCRITORIOS
+    client.broadcast.emit('count-tickets', ticketControl.tickets)
 
     if(!ticket){
       callback({

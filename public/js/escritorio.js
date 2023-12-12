@@ -30,7 +30,14 @@ socket.on('disconnect', () => {
 })
 
 socket.on('count-tickets', (data)=>{
-  lblPendientes.innerText = data.length;
+  if(data.length===0){
+    lblPendientes.style.display = 'none'
+  }else{
+    lblPendientes.style.display = ''
+    divAlerta.style.display = 'none'
+    lblPendientes.innerText = data.length;
+
+  }
 })
 
 
